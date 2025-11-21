@@ -1,0 +1,24 @@
+#!/bin/bash
+#PBS -N pytorch_gpu_job
+#PBS -l walltime=01:30:00
+#PBS -l select=1:ncpus=96:mem=700g:ngpus=4
+#PBS -q gpu4_std
+#PBS -l place=scatter:excl
+
+# NCCL configuration for multi-GPU communication
+export NCCL_IB_HCA="=$UCX_NET_DEVICES"
+export NVSHMEM_ENABLE_NIC_PE_MAPPING=1
+export NVSHMEM_HCA_LIST="$UCX_NET_DEVICES"
+export NCCL_SOCKET_IFNAME="=ib0,ib2"
+export NVSHMEM_BOOTSTRAP_UID_SOCK_IFNAME="=ib0,ib2"
+
+# Change to submission directory
+cd $PBS_O_WORKDIR
+
+uv sync
+# Activate virtual environment
+source .venv/bin/activate
+
+# Run your training script with torchrun for distributed training
+# Adjust --nproc_per_node to match the number of GPUs requested
+torchrun --standalone --nnodes=1 --nproc_per_node=4 scripts/ddp_cnn.py
