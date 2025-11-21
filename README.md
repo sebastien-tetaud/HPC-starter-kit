@@ -123,16 +123,28 @@ torchrun --standalone --nnodes=1 --nproc_per_node=4 examples/ddp_cnn.py
 
 ### 3. Distributed Training - with W&B ([examples/ddp_cnn_wandb.py](examples/ddp_cnn_wandb.py))
 
+### Configure Weights & Biases
 Next, log in and paste your API key when prompted.
 
 ```bash
+source .venv/bin/activate
 wandb login
 ```
 And copy past your wandb API key for logging in to the wandb library.
 
+In [examples/ddp_cnn_wandb.py](scripts/ddp_cnn_wandb.py#L158-L161):
 
+```python
+use_wandb = True  # Set to False to disable
+wandb_project = "your-project-name"
+wandb_run_name = "experiment-name"
+wandb_dir = "/path/to/wandb/logs"
+```
 
-
+**Sync logs later after training:**
+```bash
+wandb sync wandb sync scripts/trainings/wandb/latest-run
+```
 
 Full-featured distributed training with experiment tracking:
 - Weights & Biases integration (offline mode)
@@ -194,21 +206,7 @@ Edit the PBS job scripts to match your cluster's configuration:
 3. **Modify NCCL settings** for your network topology
 4. **Adjust batch sizes** in training scripts
 
-### Configure Weights & Biases
 
-In [examples/ddp_cnn_wandb.py](examples/ddp_cnn_wandb.py#L158-L161):
-
-```python
-use_wandb = True  # Set to False to disable
-wandb_project = "your-project-name"
-wandb_run_name = "experiment-name"
-wandb_dir = "/path/to/wandb/logs"
-```
-
-**Sync logs later:**
-```bash
-wandb sync /path/to/wandb/logs/wandb/latest-run
-```
 
 ## HPC Workflow
 

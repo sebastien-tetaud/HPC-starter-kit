@@ -13,4 +13,4 @@ uv sync
 source .venv/bin/activate
 
 # Run your CPU benchmark or training script
-python scripts/basic_benchmark.py
+python scripts/basic_bechmark.py
