@@ -123,6 +123,17 @@ torchrun --standalone --nnodes=1 --nproc_per_node=4 examples/ddp_cnn.py
 
 ### 3. Distributed Training - with W&B ([examples/ddp_cnn_wandb.py](examples/ddp_cnn_wandb.py))
 
+Next, log in and paste your API key when prompted.
+
+```bash
+wandb login
+```
+And copy past your wandb API key for logging in to the wandb library.
+
+
+
+
+
 Full-featured distributed training with experiment tracking:
 - Weights & Biases integration (offline mode)
 - Training metrics logging (loss, accuracy)
@@ -134,6 +145,8 @@ Full-featured distributed training with experiment tracking:
 - Logs saved locally for later syncing
 - Model artifact logging
 - GPU metrics tracking
+
+
 
 ## PBS Job Templates
 
@@ -150,12 +163,6 @@ Full-featured distributed training with experiment tracking:
 - 700GB RAM
 - 1.5 hour walltime
 - InfiniBand network optimization
-
-**NCCL Environment Variables:**
-```bash
-export NCCL_IB_HCA="=$UCX_NET_DEVICES"
-export NCCL_SOCKET_IFNAME="=ib0,ib2"
-```
 
 ### CPU Job Configuration ([scripts/cpu_job.pbs](scripts/cpu_job.pbs))
 

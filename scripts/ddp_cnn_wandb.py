@@ -156,9 +156,10 @@ def main():
 
     # Wandb configuration
     use_wandb = True  # Set to False to disable wandb
-    wandb_project = "BigEarthNet_HEALPix"
+    wandb_project = "hpc-starer-kit"
     wandb_run_name = "simple-cnn-test"
-    wandb_dir = "/lustre/projects/1016/BigEarthNet_HEALPix/trainings"
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    wandb_dir = os.path.join(current_dir,"trainings")
 
     # Setup distributed training
     local_rank = setup_distributed()
