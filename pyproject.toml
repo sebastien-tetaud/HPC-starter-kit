@@ -1,0 +1,13 @@
+[project]
+name = "hpc-starter-kit"
+version = "1.0.0"
+description = "Production-ready starter kit for PyTorch deep learning on HPC clusters"
+readme = "README.md"
+requires-python = ">=3.11.7"
+dependencies = [
+    "datetime>=5.5",
+    "numpy>=2.3.4",
+    "pip>=25.3",
+    "torch>=2.9.1",
+    "wandb>=0.23.0",
+]

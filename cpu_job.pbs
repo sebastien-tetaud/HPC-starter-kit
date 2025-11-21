@@ -1,0 +1,15 @@
+#!/bin/bash
+#PBS -N pytorch_cpu_job
+#PBS -l walltime=01:30:00
+#PBS -l select=1:ncpus=192:mem=700g
+#PBS -q cpu_std
+#PBS -l place=scatter:excl
+
+# Change to submission directory
+cd $PBS_O_WORKDIR
+
+# Activate virtual environment
+source .venv/bin/activate
+
+# Run your CPU benchmark or training script
+python examples/basic_benchmark.py
