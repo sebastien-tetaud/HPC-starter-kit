@@ -214,7 +214,7 @@ Edit the PBS job scripts to match your cluster's configuration:
 
 ```bash
 # Submit a job
-qsub scripts/gpu_job.pbs
+qsub scripts/ddp_cnn_wandb_job.pbs
 
 # Check job status
 qstat -u $USER
