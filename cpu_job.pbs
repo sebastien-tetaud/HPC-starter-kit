@@ -8,8 +8,9 @@
 # Change to submission directory
 cd $PBS_O_WORKDIR
 
+uv sync
 # Activate virtual environment
 source .venv/bin/activate
 
 # Run your CPU benchmark or training script
-python test/basic_benchmark.py
+python scripts/basic_benchmark.py

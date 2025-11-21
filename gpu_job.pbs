@@ -15,9 +15,10 @@ export NVSHMEM_BOOTSTRAP_UID_SOCK_IFNAME="=ib0,ib2"
 # Change to submission directory
 cd $PBS_O_WORKDIR
 
+uv sync
 # Activate virtual environment
 source .venv/bin/activate
 
 # Run your training script with torchrun for distributed training
 # Adjust --nproc_per_node to match the number of GPUs requested
-torchrun --standalone --nnodes=1 --nproc_per_node=4 test/ddp_cnn_wandb.py
+torchrun --standalone --nnodes=1 --nproc_per_node=4 scripts/ddp_cnn_wandb.py
